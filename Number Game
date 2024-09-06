@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class guessGame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        boolean playAgain = true;
+        int totalRounds = 0, roundsWon = 0, totalScore = 0;
+
+        while (playAgain) {
+            int guess, score = 0, totalTries = 10;
+            int number = random.nextInt(1, 100);
+
+            System.out.println("You have 10 tries to guess the number!");
+            while (totalTries > 0) {
+                System.out.println("Enter your guess!");
+                guess = sc.nextInt();
+                score = 10 - totalTries + 1;
+
+                if (guess == number) {
+                    System.out.println("You got it right! It took you " + score + " tries!");
+                    totalScore += score;
+                    roundsWon++;
+                    break;
+                } else if (guess > number) {
+                    System.out.println("Guess is high! Guess lower.");
+                } else {
+                    System.out.println("Guess is low! Guess higher.");
+                }
+                totalTries--;
+
+                if (totalTries == 0) {
+                    System.out.println("You're out of tries! The number was: " + number);
+                    totalScore += 10;
+                }
+            }
+
+            totalRounds++;
+            System.out.println("Do you want to play again? (yes/no)");
+            String response = sc.next();
+            playAgain = response.equalsIgnoreCase("yes");
+        }
+
+        System.out.println("Game over! You played " + totalRounds + " rounds and won " + roundsWon + " rounds.");
+        System.out.println("Do you want to display your total score (sum of all tries)? (yes/no)");
+        String showScore = sc.next();
+        if (showScore.equalsIgnoreCase("yes")) {
+            System.out.println("Your total score is: " + totalScore);
+        }
+    }
+}
