@@ -1,0 +1,45 @@
+import java.util.*;
+public class Grades {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char grade;
+        int countSub, totalMarks = 0;
+        float percentage;
+        System.out.println("Enter number of subjects: ");
+        countSub = sc.nextInt();
+        int[] marks;
+        marks = new int[countSub];
+        System.out.println("Enter marks out of 100 only");
+        for(int i = 0; i<countSub; i++){
+            System.out.println("Enter the marks of subject "+(i+1));
+            marks[i] = sc.nextInt();
+
+        }
+        //Calculating total marks
+        for(int i = 0; i<countSub; i++){
+            totalMarks += marks[i];
+        }
+        
+        percentage = (float)totalMarks/countSub;
+
+        if(percentage>=90)
+            grade = 'A';
+        else if(percentage>=80)
+            grade = 'B';
+        else if(percentage>=70)
+            grade = 'C';
+        else if(percentage>=60)
+            grade = 'D';
+        else
+            grade = 'F';
+
+        System.out.println("Total number of subjects are: "+countSub);
+        for(int i = 0; i<countSub; i++)
+            System.out.println("Marks of subject "+(i+1)+" is "+marks[i]);
+        System.out.println("Total marks are "+totalMarks);
+        System.out.println("Percentage is "+percentage);
+        System.out.println("Final grade is "+grade);
+
+
+    }
+}
